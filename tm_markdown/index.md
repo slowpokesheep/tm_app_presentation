@@ -14,6 +14,7 @@ Hjalti Geir Garðarsson
 
 ---
 
+
 ## Technology
 
 ----
@@ -65,7 +66,7 @@ Hjalti Geir Garðarsson
 
 ## Software Process
 
----
+----
 
 - The core concept was decided upon pretty early own
 - Development started out slow with the set up of our environment
@@ -74,17 +75,17 @@ Hjalti Geir Garðarsson
 
 ## Conclusion
 
----
+----
 
-## Success
+### Success
 
 - Clear vision shared among all members of the group
 - Good communication
 - Clean and modular backend API
 - The scope of the project
 
----
+----
 
-## Failure
+### Failure
 
 - Underestimation of the amount of time it takes to learn new technologies
