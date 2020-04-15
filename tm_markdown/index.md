@@ -42,14 +42,15 @@ Hjalti Geir Garðarsson
 ## Models
 
 ----
-
+### Class Diagram
 <img src="assets/model1.JPG" width="500"></img>
 
 ----
-
+### State Machine Diagram
 <img src="assets/model2.JPG" width="500"></img>
 
 ----
+### Sequence Diagram
 <img src="assets/model3.JPG" width="500"></img>
 
 ---
