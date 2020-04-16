@@ -59,9 +59,8 @@ Hjalti Geir Garðarsson
 ## Key design decisions
 
 - Users manage their own tournaments
-- Hands off approach from the web service
+- Hands off approach
 - Addition of private and public tournaments
-
 ---
 
 ## Software Process
@@ -70,10 +69,8 @@ Hjalti Geir Garðarsson
 
 - The core concept was decided upon pretty early own
 - Development started out slow with the set up of our environment
-
----
-
-## Conclusion
+- Fragments over activities
+- Collections to simplify and better usability
 
 ----
 
@@ -89,3 +86,9 @@ Hjalti Geir Garðarsson
 ### Failure
 
 - Underestimation of the amount of time it takes to learn new technologies
+
+---
+
+## Conclusion
+- Most 
+
