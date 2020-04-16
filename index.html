@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template"># Tournament Manager
+      <div class="slides"><section  data-markdown><script type="text/template"># Tournament Manager App
 
 Egill Ragnarsson
 
@@ -27,50 +27,195 @@ Hjalti Geir Garðarsson
 </script></section><section ><section data-markdown><script type="text/template">
 ## Technology
 </script></section><section data-markdown><script type="text/template">
-## Backend
+### Backend
 
-* Django
-  * Backend framework written in python
-* GraphQL
-  * Open-source data query and manipulation language for APIs.
-  * **Graphene:** library for building GraphQL APIs in Python easily
-* PostgreSQL
-  * Open-source relational database management system. 
+- Django
+  - Backend framework written in python
+- GraphQL
+  - Open-source data query and manipulation language for APIs.
+  - **Graphene:** library for building GraphQL APIs in Python easily
+- PostgreSQL
+  - Open-source relational database management system.
 </script></section><section data-markdown><script type="text/template">
-## Frontend
+### Frontend
 
-* React
-  * Frontend framework written in javascript
-* Apollo Client 
-  * A complete state management library for JavaScript apps.
-</script></section></section><section  data-markdown><script type="text/template">
+- Java (Android Studio)
+  - App framework written in java
+- Apollo Client
+  - A complete state management library for JavaScript apps.
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Models
-
-<img src="assets/apps.svg" width="500"></img>
-</script></section><section  data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">### Class Diagram
+<img src="assets/model1.JPG" width="800"></img>
+</script></section><section data-markdown><script type="text/template">### State Machine Diagram
+<img src="assets/model2.JPG" width="700"></img>
+</script></section><section data-markdown><script type="text/template">### Sequence Diagram
+<img src="assets/model3.JPG" width="800"></img>
+</script></section></section><section  data-markdown><script type="text/template">
 ## Key design decisions
-
-* Users manage their own tournaments
-* Hands off approach from the web service
-* Addition of private and public tournaments
 </script></section><section ><section data-markdown><script type="text/template">
+### Fragments over activities
+
+<img src="assets/main_paint.png" width="400"></img>
+</script></section><section data-markdown><script type="text/template">
+### Fragment
+
+```java
+public class HomeFragment extends Fragment {
+
+    private HomeViewModel homeViewModel;
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        Button findTournamentButton = root.findViewById(R.id.find_tournament_button);
+
+        // Search button listener
+        findTournamentButton.setOnClickListener(v -> {
+            EditText text = root.findViewById(R.id.find_tournament_text);
+            String code = text.getText().toString();
+            homeViewModel.fetchTournaments(code);
+        });
+
+        observeViewModel();
+
+        return root;
+    }
+}
+```
+</script></section><section data-markdown><script type="text/template">
+### ViewModel
+
+```java
+public class HomeViewModel extends ViewModel {
+
+    private final MutableLiveData<TournamentInfoQuery.Data> infoObservable =
+            new MutableLiveData<>();
+
+    public MutableLiveData<TournamentInfoQuery.Data> getInfoObservable() {
+        return infoObservable;
+    }
+
+    public void fetchTournaments(String code) {
+        ApiRepository.getInstance().getTournamentInfo(infoObservable, code);
+    }
+}
+```
+</script></section><section data-markdown><script type="text/template">
+```
+ui
+├── authentication
+│   ├── LoginFragment.java
+│   ├── LoginViewModel.java
+│   └── RegisterDialogFragment.java
+├── collections
+│   ├── CollectionAdapter.java
+│   ├── CollectionProfileFragment.java
+│   ├── CollectionTournamentFragment.java
+│   └── CollectionTournamentsFragment.java
+├── home
+│   ├── HomeFragment.java
+│   └── HomeViewModel.java
+├── newtournament
+│   ├── NewTournamentFragment.java
+│   └── NewTournamentViewModel.java
+├── profile
+│   ├── ProfileFragment.java
+│   └── ProfileViewModel.java
+└── tournaments
+    ├── filters
+    │   └── CategoryFilterDialogFragment.java
+    ├── TournamentBracket.java
+    ├── TournamentBracketViewModel.java
+    ├── TournamentInfoFragment.java
+    ├── TournamentInfoViewModel.java
+    ├── TournamentListAdapter.java
+    ├── TournamentRegisterFragment.java
+    ├── TournamentRegisterViewModel.java
+    ├── TournamentsFragment.java
+    └── TournamentsViewModel.java
+
+```
+</script></section><section data-markdown><script type="text/template">
+### Collections
+
+- Used to bundle fragments together
+
+```java
+tournamentsCollectionAdapter = new CollectionAdapter(this);
+        tournamentsCollectionAdapter.add(TournamentInfoFragment.newInstance(code), "Info");
+        tournamentsCollectionAdapter.add(TournamentRegisterFragment.newInstance(code), "Participants");
+        tournamentsCollectionAdapter.add(TournamentBracket.newInstance(code), "Bracket");
+```
+</script></section><section data-markdown><script type="text/template">
+<img src="assets/collections.png" width="400"></img>
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Key features
+</script></section><section data-markdown><script type="text/template">
+### Login
+
+<img src="assets/login.gif" alt="login" width="350"/>
+</script></section><section data-markdown><script type="text/template">
+### Profile
+
+<img src="assets/profile.gif" alt="login" width="350"/>
+</script></section><section data-markdown><script type="text/template">
+### New Tournament
+
+<img src="assets/new_tournament.gif" alt="login" width="350"/>
+</script></section><section data-markdown><script type="text/template">
+### Tournament Info
+
+<img src="assets/tournament_info.gif" alt="login" width="350"/>
+</script></section><section data-markdown><script type="text/template">
+### Tournament Code
+
+<img src="assets/home_code.gif" alt="login" width="350"/>
+</script></section></section><section ><section data-markdown><script type="text/template">
+### Complete integration
+</script></section><section data-markdown><script type="text/template">
+* The website and the app share the same backend
+  * Any changes made in the app are reflected on the website and vice versa
+* You can be logged into our website and app simultaneously
+</script></section><section data-markdown><script type="text/template">
+<img src="assets/website.gif" alt="login" width="1200"/>
+</script></section><section data-markdown><script type="text/template">
+<img src="assets/phone.gif" alt="login" width="350"/>
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Software Process
 </script></section><section data-markdown><script type="text/template">
-* The core concept was decided upon pretty early own
-* Development started out slow with the set up of our environment
+- The core concept was decided upon pretty early own
+- Development started out slow with the set up of our environment
+</script></section><section data-markdown><script type="text/template">
+### Challenges
+
+- The construction of our foundation
+  - Communication between our two modes of navigations
+  - Connection between the fragment, viewmodel and our backend
+  - Proper mangement of the logged in state
+</script></section><section data-markdown><script type="text/template">
+### Solutions
+
+- A lot of time digging through documentations
+- We managed to seperate the fragment, viewmodel and our backend communication
+- User data and the login state are managed by a special class called **SharedPref**
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Conclusion
 </script></section><section data-markdown><script type="text/template">
-## Success
+### Success
 
-* Clear vision shared among all members of the group
-* Good communication
-* Clean and modular backend API
-* The scope of the project
+- Clear vision shared among all members of the group
+- Good communication
+- Clean and modular frontend, due to our fragments
+- The scope of the project
 </script></section><section data-markdown><script type="text/template">
-## Failure
+### Failure
 
-* Underestimation of the amount of time it takes to learn new technologies</script></section></section></div>
+- Underestimation of the setup of the fragments and viewmodels
+- Underestimation of the complexity of the android api and the apollo java client
+</script></section></section><section  data-markdown><script type="text/template">
+</script></section></div>
     </div>
 
     <script src="./js/reveal.js"></script>
