@@ -56,15 +56,15 @@ Hjalti Geir Garðarsson
 
 ----
 ### Class Diagram
-<img src="assets/model1.JPG" width="800"></img>
+<img src="assets/model1.JPG" width="700"></img>
 
 ----
 ### State Machine Diagram
-<img src="assets/model2.JPG" width="700"></img>
+<img src="assets/model2.JPG" width="500"></img>
 
 ----
 ### Sequence Diagram
-<img src="assets/model3.JPG" width="800"></img>
+<img src="assets/model3.JPG" width="700"></img>
 
 ---
 
@@ -74,7 +74,7 @@ Hjalti Geir Garðarsson
 
 ### Fragments over activities
 
-<img src="assets/main_paint.png" width="400"></img>
+<img src="assets/main_paint.png" width="300"></img>
 
 ----
 
@@ -177,7 +177,7 @@ tournamentsCollectionAdapter = new CollectionAdapter(this);
 
 ----
 
-<img src="assets/collections.png" width="400"></img>
+<img src="assets/collections.png" width="350"></img>
 
 ---
 
@@ -187,31 +187,31 @@ tournamentsCollectionAdapter = new CollectionAdapter(this);
 
 ### Login
 
-<img src="assets/login.gif" alt="login" width="350"/>
+<img src="assets/login.gif" alt="login" width="300"/>
 
 ----
 
 ### Profile
 
-<img src="assets/profile.gif" alt="login" width="350"/>
+<img src="assets/profile.gif" alt="login" width="300"/>
 
 ----
 
 ### New Tournament
 
-<img src="assets/new_tournament_2.gif" alt="login" width="350"/>
+<img src="assets/new_tournament_2.gif" alt="login" width="300"/>
 
 ----
 
 ### Tournament Info
 
-<img src="assets/tournament_info.gif" alt="login" width="350"/>
+<img src="assets/tournament_info.gif" alt="login" width="300"/>
 
 ----
 
 ### Tournament Code
 
-<img src="assets/home_code.gif" alt="login" width="350"/>
+<img src="assets/home_code.gif" alt="login" width="300"/>
 
 ---
 
@@ -276,6 +276,3 @@ tournamentsCollectionAdapter = new CollectionAdapter(this);
 
 - Underestimation of the setup of the fragments and viewmodels
 - Underestimation of the complexity of the android api and the apollo java client
-
----
-
