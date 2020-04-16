@@ -10,6 +10,19 @@ Hjalti Geir Garðarsson
 
 ---
 
+## Information
+
+* [App Github](https://github.com/slowpokesheep/tournamentmanager)
+* [Slides](https://slowpokesheep.github.io/tm_app_presentation/#/)
+  * **Frontend**
+    * [Github](https://github.com/nachos5/tm_manager_frontend)
+    * [Heroku](https://tmmanagerbackend.herokuapp.com/)
+  * **Backend**
+    * [Github](https://github.com/nachos5/tm_manager_backend)
+    * [Heroku](https://tmmanagerfrontend.herokuapp.com/)
+
+---
+
 ## Architecture & Design
 
 ---
@@ -186,7 +199,7 @@ tournamentsCollectionAdapter = new CollectionAdapter(this);
 
 ### New Tournament
 
-<img src="assets/new_tournament.gif" alt="login" width="350"/>
+<img src="assets/new_tournament_2.gif" alt="login" width="350"/>
 
 ----
 
